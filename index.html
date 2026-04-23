@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -155,28 +155,42 @@
 
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
+      padding: 48px 12px 20px;
       display: flex;
-      justify-content: flex-start;
-      padding: 16px 12px 20px;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
     }
 
-    .footer-link {
-      font-size: 13px;
+    .footer-text {
+      font-size: clamp(28px, 3.8vw, 64px);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    .footer-text a {
       transition: opacity 0.2s ease;
     }
 
-    .footer-link:hover { opacity: 0.5; }
+    .footer-text a:hover { opacity: 0.5; }
+
+    .footer-copy {
+      font-size: 13px;
+      margin-top: 24px;
+    }
 
     /* ─── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 540px) {
-      nav { padding: 20px 20px; }
-      .hero { padding: 88px 20px 40px; }
-      footer {
+      nav {
+        padding: 20px 20px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
-        padding: 16px 20px 28px;
+        gap: 8px;
       }
+      .nav-links { align-items: flex-start; }
+      .hero { padding: 96px 20px 40px; }
+      .section-label { padding: 0 20px 12px; }
+      footer { padding: 36px 20px 48px; }
       .projects-grid {
         grid-template-columns: 1fr;
         padding: 8px 20px;
@@ -207,7 +221,7 @@
 
   <!-- ── HERO ─────────────────────────────────────────── -->
   <section class="hero">
-    <p class="hero-text">PUCHWORKS® Graphic Design Studio es una oficina de diseño con enfoque a branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.</p>
+    <p class="hero-text">PUCHWORKS® Graphic Design Studio es una oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.</p>
   </section>
 
   <!-- ── PROJECTS LABEL ───────────────────────────────── -->
@@ -234,9 +248,9 @@
       </div>
     </a>
 
-    <a class="project-card" href="https://www.instagram.com/p/CymVB3DuYtM/?img_index=4" target="_blank" rel="noopener">
+    <a class="project-card" href="https://www.instagram.com/p/DXb6-zvlfdL/?img_index=1" target="_blank" rel="noopener">
       <div class="project-card-inner">
-        <img src="img/p4.jpg" alt="">
+        <img src="img/p4.jpg" alt="Valientes">
       </div>
     </a>
 
@@ -244,7 +258,8 @@
 
   <!-- ── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-link">PUCHWORKS 2026 ©</span>
+    <p class="footer-text">Conversemos en <a href="mailto:info@puchworks.com">info@puchworks.com</a> o <a href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">@puchworks.studio</a></p>
+    <p class="footer-copy">PUCHWORKS® 2026 ©</p>
   </footer>
 
   <!-- ── BOUNCING STICKER 2 ───────────────────────────── -->
