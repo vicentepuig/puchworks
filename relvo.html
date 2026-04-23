@@ -107,7 +107,7 @@
 
     /* BLOQUES */
     .block-full { padding: 0 12px 12px; }
-    .block-full img { width: 100%; display: block; }
+    .block-full img { width: 100%; display: block; object-fit: cover; }
 
     .block-grid {
       display: grid;
@@ -127,6 +127,13 @@
     .footer-home:hover { opacity: 0.5; }
 
     @media (max-width: 540px) {
+      nav {
+        padding: 20px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .nav-links { align-items: flex-start; }
       .project-info { grid-template-columns: 1fr 1fr; row-gap: 20px; }
       .block-grid { grid-template-columns: 1fr; }
       .hero { height: 60vw; min-height: 280px; }
