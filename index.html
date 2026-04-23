@@ -18,8 +18,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #888888;
-      --white: #ffffff;
+      --black: #ffffff;
+      --white: #bbbbbb;
     }
 
     html { font-size: 16px; }
@@ -40,9 +40,11 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 37px 12px 12px;
+      padding: 12px;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
+      align-items: flex-end;
+      gap: 12px;
     }
 
     .nav-logo {
@@ -50,15 +52,24 @@
     }
 
     .nav-logo svg {
-      height: 28px;
+      height: 30px;
       width: auto;
       display: block;
       fill: var(--black);
+      overflow: visible;
+    }
+
+    .nav-tagline {
+      font-size: 13px;
+      color: var(--black);
+      letter-spacing: 0.01em;
+      line-height: 1;
+      margin-bottom: -1px;
     }
 
     /* ─── HERO ───────────────────────────────────────────── */
     .hero {
-      padding: 120px 12px 36px;
+      padding: 180px 12px 36px;
     }
 
     .hero-text {
@@ -102,31 +113,7 @@
 
     .project-card:hover img { transform: scale(1.03); }
 
-    .project-card-inner .overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      z-index: 2;
-    }
-
-    .overlay-arrow {
-      width: 40px;
-      height: 40px;
-      background: var(--black);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-
-    .project-card:hover .overlay { opacity: 1; }
+    .project-card:hover img { opacity: 0.9; }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
@@ -172,6 +159,7 @@
         <path d="M803.86,122.5l-17.67-42.16c7.7-4.43,15.33-13.54,17.67-25.33v67.49ZM750.24,62.27h-2.94v-25.73h2.55c8.25,0,14.93,3.73,14.93,12.96,0,6.68-4.32,12.77-14.53,12.77M637.42,102.94c-19.26,0-31.23-14.14-31.23-31.82s11.39-31.82,31.23-31.82,31.23,14.34,31.23,31.82-12.37,31.82-31.23,31.82M964.96,63l-14.51-17.75c-3.47-3.85-3.91-6.34-3.91-8.08,0-3.91,3.09-4.73,5.68-4.73,4.04,0,9.72,1.92,16.88,5.7l4.74,2.5V4.02l-2.34-.68C963.83,1.13,956.51,0,949.76,0c-24.68,0-40.02,14.46-40.02,37.74,0,12.59,4.37,23.47,13.26,33.17l15.36,18.39c3.78,4.53,5.32,7.78,5.32,11.2,0,1.54,0,6.25-6.82,6.25-5.42,0-12.44-3.09-21.46-9.46l-5.1-3.6v32.57l-2.73-5.09-29.26-54.58L915.44,2.36h-42.04l-29.07,53.43V2.36h-40.47v35.81c-3.9-23.05-22.68-35.81-56.37-35.81h-40.67v49.47C698.99,18.81,671.34,0,638.01,0,612.03,0,585.49,12.86,573.04,38.75l7.42-36.4h-40.86l-7.07,66.2-15.72-66.2h-31.63l-14.14,66.2-7.66-66.2h-76.8v48.33h-33.79V2.36h-40.47v137.51h40.47v-49.9h33.79v49.9h40.47V31.09l22.39,108.97h36.54l15.13-72.49,15.71,72.49h35.56l13.43-65.81c.83,38.33,31.71,67.97,72.02,67.97,30.93,0,60.78-19.12,69.01-52.17v49.81h40.47v-54.41h1.77l16.7,54.41h78.57v-51.27l1.37-2.95,27.5,54.22h48.11c5.96,1.48,12.3,2.36,18.39,2.36,26.09,0,42.29-15.55,42.29-40.58,0-16.26-6.55-26.88-17.03-38.64"/>
       </svg>
     </a>
+    <span class="nav-tagline">Graphic Design<br>Studio</span>
   </nav>
 
   <!-- ── HERO ─────────────────────────────────────────── -->
@@ -185,28 +173,24 @@
     <a class="project-card" href="https://www.behance.net/gallery/247958041/Relvo" target="_blank" rel="noopener">
       <div class="project-card-inner">
         <img src="img/p1.jpg" alt="Relvo">
-        <div class="overlay"><span class="overlay-arrow">↗</span></div>
       </div>
     </a>
 
     <a class="project-card" href="https://www.instagram.com/p/DXXqBDsFHbs/?img_index=1" target="_blank" rel="noopener">
       <div class="project-card-inner">
         <img src="img/p2.jpg" alt="">
-        <div class="overlay"><span class="overlay-arrow">↗</span></div>
       </div>
     </a>
 
     <a class="project-card" href="https://www.instagram.com/p/DW9-_wqlCY2/?img_index=1" target="_blank" rel="noopener">
       <div class="project-card-inner">
         <img src="img/p3.jpg" alt="">
-        <div class="overlay"><span class="overlay-arrow">↗</span></div>
       </div>
     </a>
 
     <a class="project-card" href="https://www.instagram.com/p/CymVB3DuYtM/?img_index=4" target="_blank" rel="noopener">
       <div class="project-card-inner">
         <img src="img/p4.jpg" alt="">
-        <div class="overlay"><span class="overlay-arrow">↗</span></div>
       </div>
     </a>
 
