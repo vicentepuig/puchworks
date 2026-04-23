@@ -247,6 +247,11 @@
     <span class="footer-link">PUCHWORKS 2026 ©</span>
   </footer>
 
+  <!-- ── BOUNCING STICKER 2 ───────────────────────────── -->
+  <div id="sticker2" style="position:fixed;z-index:999;width:240px;pointer-events:auto;cursor:grab;">
+    <img src="img/sticker2.svg" style="width:100%;height:auto;display:block;">
+  </div>
+
   <!-- ── BOUNCING STICKER ──────────────────────────────── -->
   <div id="sticker" style="position:fixed;z-index:999;width:120px;cursor:grab;pointer-events:none;">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84.17 56.24" style="width:100%;height:auto;">
@@ -259,78 +264,65 @@
   </div>
 
   <script>
-    const el = document.getElementById('sticker');
-    const W = 120, H = 80;
-    let x = window.innerWidth / 2 - W / 2;
-    let y = window.innerHeight / 2 - H / 2;
-    let vx = 1.2, vy = 0.8;
-    const gravity = 0;
-    const bounce = 0.55;
-    const friction = 1;
-    const minSpeed = 0.8;
-    let dragging = false;
-    let mx = 0, my = 0, pmx = 0, pmy = 0;
-    let offsetX = 0, offsetY = 0;
-    let angle = 0;
+    function makeBouncingSticker(id, startX, startY, initVx, initVy) {
+      const el = document.getElementById(id);
+      const W = 120, H = 80;
+      let x = startX, y = startY;
+      let vx = initVx, vy = initVy;
+      const minSpeed = 0.8;
+      let dragging = false;
+      let mx = 0, my = 0, pmx = 0, pmy = 0;
+      let offsetX = 0, offsetY = 0;
+      let angle = 0;
 
-    el.style.pointerEvents = 'auto';
-    el.style.cursor = 'grab';
+      el.addEventListener('mousedown', e => {
+        dragging = true;
+        offsetX = e.clientX - x;
+        offsetY = e.clientY - y;
+        pmx = e.clientX; pmy = e.clientY;
+        el.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
 
-    el.addEventListener('mousedown', e => {
-      dragging = true;
-      offsetX = e.clientX - x;
-      offsetY = e.clientY - y;
-      pmx = e.clientX; pmy = e.clientY;
-      el.style.cursor = 'grabbing';
-      e.preventDefault();
-    });
-
-    document.addEventListener('mousemove', e => {
-      if (!dragging) return;
-      pmx = mx; pmy = my;
-      mx = e.clientX; my = e.clientY;
-      x = mx - offsetX;
-      y = my - offsetY;
-      el.style.left = x + 'px';
-      el.style.top = y + 'px';
-    });
-
-    document.addEventListener('mouseup', e => {
-      if (!dragging) return;
-      dragging = false;
-      vx = (mx - pmx) * 0.8;
-      vy = (my - pmy) * 0.8;
-      el.style.cursor = 'grab';
-    });
-
-    function animate() {
-      if (!dragging) {
-        vy += gravity;
-        vx *= friction;
-        vy *= friction;
-        x += vx;
-        y += vy;
-
-        if (x + W >= window.innerWidth)  { x = window.innerWidth - W;  vx *= -1; }
-        if (x <= 0)                       { x = 0;                       vx *= -1; }
-        if (y + H >= window.innerHeight)  { y = window.innerHeight - H;  vy *= -1; }
-        if (y <= 0)                       { y = 0;                       vy *= -1; }
-
-        // mantener velocidad mínima
-        const speed = Math.sqrt(vx*vx + vy*vy);
-        if (speed < minSpeed) {
-          const scale = minSpeed / (speed || 0.01);
-          vx *= scale; vy *= scale;
-        }
-
-        angle += vx * 0.3;
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        pmx = mx; pmy = my;
+        mx = e.clientX; my = e.clientY;
+        x = mx - offsetX;
+        y = my - offsetY;
         el.style.left = x + 'px';
-        el.style.top  = y + 'px';
-        el.style.transform = `rotate(${angle}deg)`;
+        el.style.top = y + 'px';
+      });
+
+      document.addEventListener('mouseup', e => {
+        if (!dragging) return;
+        dragging = false;
+        vx = (mx - pmx) * 0.8;
+        vy = (my - pmy) * 0.8;
+        el.style.cursor = 'grab';
+      });
+
+      function animate() {
+        if (!dragging) {
+          x += vx; y += vy;
+          if (x + W >= window.innerWidth)  { x = window.innerWidth - W;  vx *= -1; }
+          if (x <= 0)                       { x = 0;                       vx *= -1; }
+          if (y + H >= window.innerHeight)  { y = window.innerHeight - H;  vy *= -1; }
+          if (y <= 0)                       { y = 0;                       vy *= -1; }
+          const speed = Math.sqrt(vx*vx + vy*vy);
+          if (speed < minSpeed) { const s = minSpeed / (speed || 0.01); vx *= s; vy *= s; }
+          angle += vx * 0.3;
+          el.style.left = x + 'px';
+          el.style.top  = y + 'px';
+          el.style.transform = `rotate(${angle}deg)`;
+        }
+        requestAnimationFrame(animate);
       }
-      requestAnimationFrame(animate);
+      animate();
     }
-    animate();
+
+    makeBouncingSticker('sticker',  window.innerWidth/2 - 60,  window.innerHeight/2 - 40,  1.2,  0.8);
+    makeBouncingSticker('sticker2', window.innerWidth/3,        window.innerHeight/3,       -1.5, 1.0);
   </script>
 
 </body>
