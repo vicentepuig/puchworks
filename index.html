@@ -152,7 +152,57 @@
 
     .project-card:hover img { transform: scale(1.03); }
 
-    .project-card:hover img { opacity: 0.9; }
+    .project-label {
+      position: absolute;
+      bottom: 10px;
+      left: 16px;
+      font-size: 18px;
+      color: #ffffff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .project-card:hover .project-label { opacity: 1; }
+
+    /* ─── CLIENTS ────────────────────────────────────────── */
+    .clients-section {
+      padding: 36px 12px 36px calc(50% + 6px);
+    }
+
+    .clients-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      padding-bottom: 8px;
+    }
+
+    .clients-divider {
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 4px;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .client-item {
+      font-size: 18px;
+      line-height: 1.1;
+      padding: 2px 0;
+    }
+
+    @media (max-width: 540px) {
+      .clients-section {
+        padding: 12px 20px 48px;
+      }
+      .clients-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
@@ -236,56 +286,82 @@
       <div class="project-card-inner">
         <img src="img/p1.jpg" alt="Relvo">
       </div>
+      <span class="project-label">Relvo</span>
     </a>
 
     <a class="project-card" href="f360.html">
       <div class="project-card-inner">
-        <img src="img/p2.jpg" alt="">
+        <img src="img/p2.jpg" alt="F360">
       </div>
+      <span class="project-label">F360 by Flipeame!</span>
     </a>
 
     <a class="project-card" href="puente.html">
       <div class="project-card-inner">
-        <img src="img/p3.jpg" alt="">
+        <img src="img/p3.jpg" alt="Puente OS">
       </div>
+      <span class="project-label">Identidad Puente OS</span>
     </a>
 
     <a class="project-card" href="ongo.html">
       <div class="project-card-inner">
         <img src="img/p7.jpg" alt="Ongo">
       </div>
+      <span class="project-label">Identidad y Packaging Ongo</span>
     </a>
 
     <a class="project-card" href="costaverde.html">
       <div class="project-card-inner">
         <img src="img/p5.png" alt="Costa Verde">
       </div>
+      <span class="project-label">Identidad Inversiones Costa Verde</span>
     </a>
 
     <a class="project-card" href="citybloom.html">
       <div class="project-card-inner">
         <img src="img/p6.png" alt="CityBloom">
       </div>
+      <span class="project-label">CityBloom</span>
     </a>
 
     <a class="project-card" href="tribux.html">
       <div class="project-card-inner">
         <img src="img/p10.jpg" alt="TribUX">
       </div>
+      <span class="project-label">Escuela TribUX</span>
     </a>
 
     <a class="project-card" href="prodemu.html">
       <div class="project-card-inner">
         <img src="img/p8.jpg" alt="PRODEMU">
       </div>
+      <span class="project-label">PRODEMU</span>
     </a>
 
   </div>
 
+  <!-- ── CLIENTS ─────────────────────────────────────────── -->
+  <div class="clients-section">
+    <p class="clients-label">Han confiado en nuestro trabajo</p>
+    <hr class="clients-divider">
+    <div class="clients-grid">
+      <span class="client-item">Sticta Biologicals</span>
+      <span class="client-item">Summit Produce</span>
+      <span class="client-item">iConstruye</span>
+      <span class="client-item">Diseño UC</span>
+      <span class="client-item">Fundación Prodemu</span>
+      <span class="client-item">Platanus Ventures</span>
+      <span class="client-item">PuraFruit Company</span>
+      <span class="client-item">Cámara de Comercio de Santiago</span>
+      <span class="client-item">Inversiones Costa Verde</span>
+      <span class="client-item">Flipeame!</span>
+    </div>
+  </div>
+
   <!-- ── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <p class="footer-text">Conversemos en <a href="mailto:info@puchworks.com">info@puchworks.com</a> o <a href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">@puchworks.studio</a></p>
-    <p class="footer-copy">PUCHWORKS® 2026 ©</p>
+    <p class="footer-text">Revisa más proyectos en nuestro <a href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">Instagram</a>. Conversemos en <a href="mailto:info@puchworks.com">info@puchworks.com</a></p>
+    <p class="footer-copy" style="font-size:14px;margin-top:12px;text-align:center;">PUCHWORKS® Graphic Design Studio © 2026<br>Santiago, Chile</p>
   </footer>
 
   <!-- ── BOUNCING STICKER 2 ───────────────────────────── -->
@@ -362,8 +438,8 @@
       animate();
     }
 
-    makeBouncingSticker('sticker',  window.innerWidth/2 - 60,  window.innerHeight/2 - 40,  1.2,  0.8);
-    makeBouncingSticker('sticker2', window.innerWidth/3,        window.innerHeight/3,       -1.5, 1.0);
+    makeBouncingSticker('sticker',  window.innerWidth * 0.7,  window.innerHeight * 0.3,  1.2,  0.8);
+    makeBouncingSticker('sticker2', window.innerWidth * 0.2,  window.innerHeight * 0.6, -1.5,  1.0);
   </script>
 
 </body>
