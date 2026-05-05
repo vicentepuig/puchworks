@@ -14,7 +14,6 @@
       font-weight: 500;
       font-style: normal;
     }
-
     @font-face {
       font-family: 'Suisse Intl';
       src: url('fonts/SuisseIntl-SemiBold.otf') format('opentype');
@@ -77,9 +76,7 @@
 
     .nav-link:hover { opacity: 0.5; }
 
-    .nav-logo {
-      display: inline-block;
-    }
+    .nav-logo { display: inline-block; }
 
     .nav-logo svg {
       height: 30px;
@@ -99,7 +96,7 @@
 
     /* ─── HERO ───────────────────────────────────────────── */
     .hero {
-      padding: 180px 12px 36px;
+      padding: 180px 12px 48px;
     }
 
     .hero-text {
@@ -114,11 +111,71 @@
       font-size: 18px;
       font-weight: 600;
       padding: 0 12px 12px;
-      margin-top: 6px;
       color: var(--black);
     }
 
-    /* ─── PROJECT GRID ───────────────────────────────────── */
+    /* ─── CAROUSEL ───────────────────────────────────────── */
+    .carousel-track {
+      overflow: hidden;
+      padding-bottom: 12px;
+    }
+
+    .carousel-inner {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .carousel-card {
+      flex: 0 0 calc(100vw / 4.5 - 14px);
+      display: block;
+      text-decoration: none;
+    }
+
+    .carousel-card-inner {
+      position: relative;
+      width: 100%;
+      padding-bottom: 133.33%;
+      background: #c8c8c8;
+      overflow: hidden;
+    }
+
+    .carousel-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-card.coming-soon {
+      cursor: default;
+    }
+
+    .carousel-card.coming-soon .carousel-card-inner::after {
+      content: 'Coming Soon';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0);
+      color: white;
+      font-size: 18px;
+      font-family: 'Suisse Intl', sans-serif;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease, background 0.3s ease;
+    }
+
+    .carousel-card.coming-soon:hover .carousel-card-inner::after {
+      opacity: 1;
+      background: rgba(0,0,0,0.45);
+    }
+
+    /* ─── PROJECTS GRID ──────────────────────────────────── */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -136,7 +193,7 @@
       position: relative;
       width: 100%;
       padding-bottom: 75%;
-      background: #e8e8e8;
+      background: #c8c8c8;
       overflow: hidden;
     }
 
@@ -154,17 +211,13 @@
 
     .project-label {
       position: absolute;
-      bottom: 10px;
-      left: 16px;
+      bottom: 12px;
+      left: 12px;
       font-size: 18px;
       color: #ffffff;
-      opacity: 0;
-      transition: opacity 0.3s ease;
       pointer-events: none;
       z-index: 2;
     }
-
-    .project-card:hover .project-label { opacity: 1; }
 
     /* ─── CLIENTS ────────────────────────────────────────── */
     .clients-section {
@@ -195,45 +248,84 @@
       padding: 2px 0;
     }
 
-    @media (max-width: 540px) {
-      .clients-section {
-        padding: 12px 20px 48px;
-      }
-      .clients-grid {
-        grid-template-columns: 1fr;
-      }
+    /* ─── ROTATING AREAS ─────────────────────────────────── */
+    .areas-section {
+      padding: 80px 12px 80px;
     }
 
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      padding: 48px 12px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 280px;
-    }
-
-    .footer-text {
+    .areas-text {
       font-size: clamp(28px, 3.8vw, 64px);
       line-height: 1.18;
       letter-spacing: -0.025em;
     }
 
-    .footer-text a {
+    #rotating-area {
+      display: inline;
+      transition: opacity 0.15s ease;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      padding: 48px 12px 12px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .footer-cols {
+      display: flex;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .footer-logo svg {
+      height: 30px;
+      width: auto;
+      display: block;
+      fill: var(--black);
+      overflow: visible;
+    }
+
+    .footer-logo-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      align-self: end;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--black);
+      letter-spacing: 0.01em;
+      line-height: 1;
+      margin-bottom: -1px;
+    }
+
+    .footer-col-title {
+      font-size: 18px;
+      opacity: 0.45;
+      margin-bottom: 0;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .footer-col-item {
+      font-size: 18px;
+      display: block;
+      line-height: 1.5;
       transition: opacity 0.2s ease;
     }
 
-    .footer-text a:hover { opacity: 0.5; }
-
-    .footer-copy {
-      font-size: 18px;
-      margin-top: 24px;
-    }
+    .footer-col-item:hover { opacity: 0.5; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 540px) {
       nav {
-        padding: 20px 20px;
+        padding: 20px;
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
@@ -241,12 +333,19 @@
       .nav-links { align-items: flex-start; }
       .hero { padding: 96px 20px 40px; }
       .section-label { padding: 0 20px 12px; }
+      .carousel-track { padding: 0 20px 12px; }
+      .carousel-card { flex: 0 0 calc(100vw - 60px); }
+      .clients-section { padding: 12px 20px 48px; }
+      .clients-grid { grid-template-columns: 1fr; }
+      .featured-section { padding: 40px 20px 0; }
+      .areas-section { padding: 60px 20px; }
       footer { padding: 36px 20px 48px; }
-      .projects-grid {
-        grid-template-columns: 1fr;
-        padding: 8px 20px;
-        gap: 8px;
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
       }
+      .footer-logo { grid-column: 1 / -1; }
     }
 
   </style>
@@ -276,66 +375,105 @@
     <p class="hero-text">PUCHWORKS® Graphic Design Studio es una oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.</p>
   </section>
 
-  <!-- ── PROJECTS LABEL ───────────────────────────────── -->
-  <p class="section-label">Proyectos Seleccionados</p>
+  <!-- ── CAROUSEL ─────────────────────────────────────────── -->
+  <div class="carousel-track">
+    <div class="carousel-inner">
+      <a class="carousel-card" href="relvo.html"><div class="carousel-card-inner"><img src="img/c1.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c2.jpg" alt=""></div></a>
+      <div class="carousel-card coming-soon"><div class="carousel-card-inner"><img src="img/c3.jpg" alt=""></div></div>
+      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c4.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DPAHn9mjN2O/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c5.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c6.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c7.jpg" alt=""></div></a>
+      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c8.jpg" alt=""></div></a>
+      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c9.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DUJI1YlFHKB/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c10.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/C3Yl0S1OnjX/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c11.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c12.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c13.jpg" alt=""></div></a>
+      <a class="carousel-card" href="prodemu.html"><div class="carousel-card-inner"><img src="img/c14.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DQsJH1jCevq/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c15.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c16.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c17.jpg" alt=""></div></a>
+      <!-- duplicado para loop infinito -->
+      <a class="carousel-card" href="relvo.html"><div class="carousel-card-inner"><img src="img/c1.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c2.jpg" alt=""></div></a>
+      <div class="carousel-card coming-soon"><div class="carousel-card-inner"><img src="img/c3.jpg" alt=""></div></div>
+      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c4.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DPAHn9mjN2O/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c5.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c6.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c7.jpg" alt=""></div></a>
+      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c8.jpg" alt=""></div></a>
+      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c9.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DUJI1YlFHKB/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c10.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/C3Yl0S1OnjX/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c11.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c12.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c13.jpg" alt=""></div></a>
+      <a class="carousel-card" href="prodemu.html"><div class="carousel-card-inner"><img src="img/c14.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DQsJH1jCevq/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c15.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c16.jpg" alt=""></div></a>
+      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c17.jpg" alt=""></div></a>
+    </div>
+  </div>
 
-  <!-- ── PROJECTS GRID ─────────────────────────────────── -->
-  <div class="projects-grid" id="proyectos">
+  <!-- ── PROYECTOS DESTACADOS ──────────────────────────── -->
+  <p class="section-label" style="margin-top:48px;">Proyectos Destacados</p>
+  <div class="projects-grid">
 
     <a class="project-card" href="relvo.html">
       <div class="project-card-inner">
         <img src="img/p1.jpg" alt="Relvo">
+        <span class="project-label">Relvo</span>
       </div>
-      <span class="project-label">Relvo</span>
     </a>
 
     <a class="project-card" href="f360.html">
       <div class="project-card-inner">
         <img src="img/p2.jpg" alt="F360">
+        <span class="project-label">F360 by Flipeame!</span>
       </div>
-      <span class="project-label">F360 by Flipeame!</span>
     </a>
 
     <a class="project-card" href="puente.html">
       <div class="project-card-inner">
         <img src="img/p3.jpg" alt="Puente OS">
+        <span class="project-label">Identidad Puente OS</span>
       </div>
-      <span class="project-label">Identidad Puente OS</span>
     </a>
 
     <a class="project-card" href="ongo.html">
       <div class="project-card-inner">
         <img src="img/p7.jpg" alt="Ongo">
+        <span class="project-label">Identidad y Packaging Ongo</span>
       </div>
-      <span class="project-label">Identidad y Packaging Ongo</span>
     </a>
 
     <a class="project-card" href="costaverde.html">
       <div class="project-card-inner">
         <img src="img/p5.png" alt="Costa Verde">
+        <span class="project-label">Identidad Inversiones Costa Verde</span>
       </div>
-      <span class="project-label">Identidad Inversiones Costa Verde</span>
     </a>
 
     <a class="project-card" href="citybloom.html">
       <div class="project-card-inner">
         <img src="img/p6.png" alt="CityBloom">
+        <span class="project-label">CityBloom</span>
       </div>
-      <span class="project-label">CityBloom</span>
     </a>
 
     <a class="project-card" href="tribux.html">
       <div class="project-card-inner">
         <img src="img/p10.jpg" alt="TribUX">
+        <span class="project-label">Escuela TribUX</span>
       </div>
-      <span class="project-label">Escuela TribUX</span>
     </a>
 
     <a class="project-card" href="prodemu.html">
       <div class="project-card-inner">
         <img src="img/p8.jpg" alt="PRODEMU">
+        <span class="project-label">PRODEMU</span>
       </div>
-      <span class="project-label">PRODEMU</span>
     </a>
 
   </div>
@@ -358,10 +496,39 @@
     </div>
   </div>
 
+  <!-- ── ROTATING AREAS ─────────────────────────────────── -->
+  <div class="areas-section">
+    <p class="areas-text">Hemos trabajado en las áreas<br>de <span id="rotating-area">Ciencia</span>.</p>
+  </div>
+
   <!-- ── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <p class="footer-text">Revisa más proyectos en nuestro <a href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">Instagram</a>. Conversemos en <a href="mailto:info@puchworks.com">info@puchworks.com</a></p>
-    <p class="footer-copy" style="font-size:14px;margin-top:12px;text-align:center;">PUCHWORKS® Graphic Design Studio © 2026<br>Santiago, Chile</p>
+    <div class="footer-grid">
+
+      <div class="footer-logo-wrap">
+        <div class="footer-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 142.23" aria-hidden="true">
+          <path d="M43.41,65.22h-2.94v-27.11h2.55c8.25,0,14.93,3.73,14.93,12.97,0,8.05-4.32,14.14-14.54,14.14M206.65,55.47V2.36h-39.88v86.63c0,9.43-5.3,16.11-14.93,16.11s-15.12-6.68-15.12-17.29V2.36h-40.47v34.06C91.04,14.08,72.55,2.36,40.67,2.36H0v137.51h40.47v-42.83h1.77c32.63,0,49.16-15.41,54.01-33.99v29.86c0,32.02,22.2,49.11,55.6,49.11s54.81-17.68,54.81-50.49v-3.61c6.51,31.47,33,54.29,68.35,54.29,9.24,0,20.63-1.77,29.08-5.11v-45.18c-4.91,5.7-14.53,11-27.3,11-19.25,0-31.24-14.14-31.24-31.82s11.4-31.82,31.24-31.82c12.96,0,22.39,5.89,27.3,11.98V4.52c-8.25-2.95-19.25-4.52-28.87-4.52-31.08,0-61.41,18.32-68.55,55.47"/>
+          <path d="M803.86,122.5l-17.67-42.16c7.7-4.43,15.33-13.54,17.67-25.33v67.49ZM750.24,62.27h-2.94v-25.73h2.55c8.25,0,14.93,3.73,14.93,12.96,0,6.68-4.32,12.77-14.53,12.77M637.42,102.94c-19.26,0-31.23-14.14-31.23-31.82s11.39-31.82,31.23-31.82,31.23,14.34,31.23,31.82-12.37,31.82-31.23,31.82M964.96,63l-14.51-17.75c-3.47-3.85-3.91-6.34-3.91-8.08,0-3.91,3.09-4.73,5.68-4.73,4.04,0,9.72,1.92,16.88,5.7l4.74,2.5V4.02l-2.34-.68C963.83,1.13,956.51,0,949.76,0c-24.68,0-40.02,14.46-40.02,37.74,0,12.59,4.37,23.47,13.26,33.17l15.36,18.39c3.78,4.53,5.32,7.78,5.32,11.2,0,1.54,0,6.25-6.82,6.25-5.42,0-12.44-3.09-21.46-9.46l-5.1-3.6v32.57l-2.73-5.09-29.26-54.58L915.44,2.36h-42.04l-29.07,53.43V2.36h-40.47v35.81c-3.9-23.05-22.68-35.81-56.37-35.81h-40.67v49.47C698.99,18.81,671.34,0,638.01,0,612.03,0,585.49,12.86,573.04,38.75l7.42-36.4h-40.86l-7.07,66.2-15.72-66.2h-31.63l-14.14,66.2-7.66-66.2h-76.8v48.33h-33.79V2.36h-40.47v137.51h40.47v-49.9h33.79v49.9h40.47V31.09l22.39,108.97h36.54l15.13-72.49,15.71,72.49h35.56l13.43-65.81c.83,38.33,31.71,67.97,72.02,67.97,30.93,0,60.78-19.12,69.01-52.17v49.81h40.47v-54.41h1.77l16.7,54.41h78.57v-51.27l1.37-2.95,27.5,54.22h48.11c5.96,1.48,12.3,2.36,18.39,2.36,26.09,0,42.29-15.55,42.29-40.58,0-16.26-6.55-26.88-17.03-38.64"/>
+        </svg>
+        </div>
+        <span class="footer-tagline">Graphic Design<br>Studio</span>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-title">Síguenos</p>
+          <a class="footer-col-item" href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">Instagram</a>
+          <a class="footer-col-item" href="https://linkedin.com/company/puchworks" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Contacto</p>
+          <a class="footer-col-item" href="mailto:info@puchworks.com">info@puchworks.com</a>
+        </div>
+      </div>
+
+
+    </div>
   </footer>
 
   <!-- ── BOUNCING STICKER 2 ───────────────────────────── -->
@@ -381,6 +548,7 @@
   </div>
 
   <script>
+    /* ── BOUNCING STICKERS ───────────────────────────────── */
     function makeBouncingSticker(id, startX, startY, initVx, initVy) {
       const el = document.getElementById(id);
       const W = 120, H = 80;
@@ -440,6 +608,61 @@
 
     makeBouncingSticker('sticker',  window.innerWidth * 0.7,  window.innerHeight * 0.3,  1.2,  0.8);
     makeBouncingSticker('sticker2', window.innerWidth * 0.2,  window.innerHeight * 0.6, -1.5,  1.0);
+
+    /* ── MARQUEE ─────────────────────────────────────────── */
+    (function() {
+      const inner = document.querySelector('.carousel-inner');
+      const track = document.querySelector('.carousel-track');
+      let pos = 0;
+      let currentSpeed = 1.2;
+      const baseSpeed = 1.2;
+      const fastSpeed = 3.5;
+
+      track.addEventListener('mousemove', (e) => {
+        const rect = track.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const w = rect.width;
+        if (x < w * 0.25) {
+          currentSpeed = -fastSpeed;
+        } else if (x > w * 0.75) {
+          currentSpeed = fastSpeed;
+        } else {
+          currentSpeed = baseSpeed;
+        }
+      });
+
+      track.addEventListener('mouseleave', () => {
+        currentSpeed = baseSpeed;
+      });
+
+      function tick() {
+        pos += currentSpeed;
+        const half = inner.scrollWidth / 2;
+        if (pos <= -half) pos = 0;
+        if (pos > 0) pos = -half;
+        inner.style.transform = `translateX(${pos}px)`;
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+
+    /* ── ROTATING AREAS ──────────────────────────────────── */
+    const areas = [
+      'Ciencia','Tecnología','Moda','Alimentación','Agricultura',
+      'Bienestar','Arquitectura','Diseño','Educación','ONG',
+      'Startups','Sector Público','Industrias Creativas',
+      'Inversiones','Vivienda','Emprendimiento'
+    ];
+    let areaIndex = 0;
+    const rotEl = document.getElementById('rotating-area');
+    setInterval(() => {
+      rotEl.style.opacity = '0';
+      setTimeout(() => {
+        areaIndex = (areaIndex + 1) % areas.length;
+        rotEl.textContent = areas[areaIndex];
+        rotEl.style.opacity = '1';
+      }, 150);
+    }, 500);
   </script>
 
 </body>
