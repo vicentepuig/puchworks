@@ -1,709 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <title>PUCHWORKS® — Estudio de Diseño</title>
-  <style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUCHWORKS® Studio</title>
+  <meta name="description" content="PUCHWORKS® Studio es una oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://puchworks.com/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-    /* ─── FONTS ─────────────────────────────────────────── */
-    @font-face {
-      font-family: 'Suisse Intl';
-      src: url('fonts/SuisseIntl-Medium.otf') format('opentype');
-      font-weight: 500;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Suisse Intl';
-      src: url('fonts/SuisseIntl-SemiBold.otf') format('opentype');
-      font-weight: 600;
-      font-style: normal;
-    }
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://puchworks.com/">
+  <meta property="og:title" content="PUCHWORKS® Studio">
+  <meta property="og:description" content="Oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.">
+  <meta property="og:image" content="https://puchworks.com/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-    /* ─── RESET ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { overflow-x: hidden; }
-
-    :root {
-      --black: #ffffff;
-      --white: #bbbbbb;
-    }
-
-    html { font-size: 16px; }
-
-    body {
-      font-family: 'Suisse Intl', sans-serif;
-      font-weight: 600;
-      background: var(--white);
-      color: var(--black);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ─── NAV ────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: flex-end;
-      gap: 20px;
-    }
-
-    .nav-link {
-      font-size: 18px;
-      color: var(--black);
-      letter-spacing: 0.01em;
-      line-height: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-link:hover { opacity: 0.5; }
-
-    .nav-logo { display: inline-block; }
-
-    .nav-logo svg {
-      height: 30px;
-      width: auto;
-      display: block;
-      fill: var(--black);
-      overflow: visible;
-    }
-
-    .nav-tagline {
-      font-size: 13px;
-      color: var(--black);
-      letter-spacing: 0.01em;
-      line-height: 1;
-      margin-bottom: -1px;
-    }
-
-    /* ─── HERO ───────────────────────────────────────────── */
-    .hero {
-      padding: 180px 12px 48px;
-    }
-
-    .hero-text {
-      font-size: clamp(28px, 3.8vw, 64px);
-      line-height: 1.18;
-      letter-spacing: -0.025em;
-      width: 100%;
-    }
-
-    /* ─── SECTION LABEL ──────────────────────────────────── */
-    .section-label {
-      font-size: 18px;
-      font-weight: 600;
-      padding: 0 12px 12px;
-      color: var(--black);
-    }
-
-    /* ─── CAROUSEL ───────────────────────────────────────── */
-    .carousel-track {
-      overflow: hidden;
-      padding-bottom: 12px;
-    }
-
-    .carousel-inner {
-      display: flex;
-      gap: 12px;
-      width: max-content;
-      will-change: transform;
-    }
-
-    .carousel-card {
-      flex: 0 0 calc(100vw / 4.5 - 14px);
-      display: block;
-      text-decoration: none;
-    }
-
-    .carousel-card-inner {
-      position: relative;
-      width: 100%;
-      padding-bottom: 133.33%;
-      background: #c8c8c8;
-      overflow: hidden;
-    }
-
-    .carousel-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .carousel-card.coming-soon {
-      cursor: default;
-    }
-
-    .carousel-card.coming-soon .carousel-card-inner::after {
-      content: 'Coming Soon';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0);
-      color: white;
-      font-size: 18px;
-      font-family: 'Suisse Intl', sans-serif;
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.3s ease, background 0.3s ease;
-    }
-
-    .carousel-card.coming-soon:hover .carousel-card-inner::after {
-      opacity: 1;
-      background: rgba(0,0,0,0.45);
-    }
-
-    /* ─── PROJECTS GRID ──────────────────────────────────── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 0 12px 12px;
-    }
-
-    .project-card {
-      position: relative;
-      display: block;
-      overflow: hidden;
-    }
-
-    .project-card-inner {
-      position: relative;
-      width: 100%;
-      padding-bottom: 75%;
-      background: #c8c8c8;
-      overflow: hidden;
-    }
-
-    .project-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .project-card:hover img { transform: scale(1.03); }
-
-    .project-label {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      font-size: 18px;
-      color: #ffffff;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* ─── CLIENTS ────────────────────────────────────────── */
-    .clients-section {
-      padding: 36px 12px 36px calc(50% + 6px);
-    }
-
-    .clients-label {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--black);
-      padding-bottom: 8px;
-    }
-
-    .clients-divider {
-      border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      margin-bottom: 4px;
-    }
-
-    .clients-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .client-item {
-      font-size: 18px;
-      line-height: 1.1;
-      padding: 2px 0;
-    }
-
-    /* ─── ROTATING AREAS ─────────────────────────────────── */
-    .areas-section {
-      padding: 80px 12px 80px;
-    }
-
-    .areas-text {
-      font-size: clamp(28px, 3.8vw, 64px);
-      line-height: 1.18;
-      letter-spacing: -0.025em;
-    }
-
-    #rotating-area {
-      display: inline;
-      transition: opacity 0.15s ease;
-    }
-
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      padding: 48px 12px 12px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .footer-cols {
-      display: flex;
-      gap: 36px;
-      align-items: start;
-    }
-
-    .footer-logo svg {
-      height: 30px;
-      width: auto;
-      display: block;
-      fill: var(--black);
-      overflow: visible;
-    }
-
-    .footer-logo-wrap {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      align-self: end;
-    }
-
-    .footer-tagline {
-      font-size: 13px;
-      color: var(--black);
-      letter-spacing: 0.01em;
-      line-height: 1;
-      margin-bottom: -1px;
-    }
-
-    .footer-col-title {
-      font-size: 18px;
-      opacity: 0.45;
-      margin-bottom: 0;
-      display: block;
-      line-height: 1.5;
-    }
-
-    .footer-col-item {
-      font-size: 18px;
-      display: block;
-      line-height: 1.5;
-      transition: opacity 0.2s ease;
-    }
-
-    .footer-col-item:hover { opacity: 0.5; }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 540px) {
-      nav {
-        padding: 12px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      .nav-links { align-items: flex-start; }
-      .hero { padding: 96px 12px 32px; }
-      .section-label { padding: 0 12px 12px; }
-      .carousel-track { padding: 0 0 12px; touch-action: pan-y; }
-      .carousel-card { flex: 0 0 55vw; }
-      .carousel-card-inner { padding-bottom: 110%; }
-      .projects-grid {
-        grid-template-columns: 1fr;
-        padding: 0 12px 12px;
-        gap: 12px;
-      }
-      .clients-section { padding: 12px 12px 48px; }
-      .clients-grid { grid-template-columns: 1fr; }
-      .areas-section { padding: 48px 12px; }
-      footer { padding: 36px 12px 12px; }
-      .footer-grid {
-        grid-template-columns: auto 1fr;
-        gap: 32px;
-        align-items: start;
-      }
-      .footer-logo-wrap { grid-column: 1 / -1; align-self: auto; }
-      .footer-cols { flex-direction: column; gap: 24px; }
-    }
-
-  </style>
+  <link rel="preload" href="assets/fonts/SuisseIntl-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/SuisseIntl-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- ── NAV ──────────────────────────────────────────── -->
-  <nav>
-    <div class="nav-left">
-      <a class="nav-logo" href="/" aria-label="PUCHWORKS inicio">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 142.23" aria-hidden="true">
-          <path d="M43.41,65.22h-2.94v-27.11h2.55c8.25,0,14.93,3.73,14.93,12.97,0,8.05-4.32,14.14-14.54,14.14M206.65,55.47V2.36h-39.88v86.63c0,9.43-5.3,16.11-14.93,16.11s-15.12-6.68-15.12-17.29V2.36h-40.47v34.06C91.04,14.08,72.55,2.36,40.67,2.36H0v137.51h40.47v-42.83h1.77c32.63,0,49.16-15.41,54.01-33.99v29.86c0,32.02,22.2,49.11,55.6,49.11s54.81-17.68,54.81-50.49v-3.61c6.51,31.47,33,54.29,68.35,54.29,9.24,0,20.63-1.77,29.08-5.11v-45.18c-4.91,5.7-14.53,11-27.3,11-19.25,0-31.24-14.14-31.24-31.82s11.4-31.82,31.24-31.82c12.96,0,22.39,5.89,27.3,11.98V4.52c-8.25-2.95-19.25-4.52-28.87-4.52-31.08,0-61.41,18.32-68.55,55.47"/>
-          <path d="M803.86,122.5l-17.67-42.16c7.7-4.43,15.33-13.54,17.67-25.33v67.49ZM750.24,62.27h-2.94v-25.73h2.55c8.25,0,14.93,3.73,14.93,12.96,0,6.68-4.32,12.77-14.53,12.77M637.42,102.94c-19.26,0-31.23-14.14-31.23-31.82s11.39-31.82,31.23-31.82,31.23,14.34,31.23,31.82-12.37,31.82-31.23,31.82M964.96,63l-14.51-17.75c-3.47-3.85-3.91-6.34-3.91-8.08,0-3.91,3.09-4.73,5.68-4.73,4.04,0,9.72,1.92,16.88,5.7l4.74,2.5V4.02l-2.34-.68C963.83,1.13,956.51,0,949.76,0c-24.68,0-40.02,14.46-40.02,37.74,0,12.59,4.37,23.47,13.26,33.17l15.36,18.39c3.78,4.53,5.32,7.78,5.32,11.2,0,1.54,0,6.25-6.82,6.25-5.42,0-12.44-3.09-21.46-9.46l-5.1-3.6v32.57l-2.73-5.09-29.26-54.58L915.44,2.36h-42.04l-29.07,53.43V2.36h-40.47v35.81c-3.9-23.05-22.68-35.81-56.37-35.81h-40.67v49.47C698.99,18.81,671.34,0,638.01,0,612.03,0,585.49,12.86,573.04,38.75l7.42-36.4h-40.86l-7.07,66.2-15.72-66.2h-31.63l-14.14,66.2-7.66-66.2h-76.8v48.33h-33.79V2.36h-40.47v137.51h40.47v-49.9h33.79v49.9h40.47V31.09l22.39,108.97h36.54l15.13-72.49,15.71,72.49h35.56l13.43-65.81c.83,38.33,31.71,67.97,72.02,67.97,30.93,0,60.78-19.12,69.01-52.17v49.81h40.47v-54.41h1.77l16.7,54.41h78.57v-51.27l1.37-2.95,27.5,54.22h48.11c5.96,1.48,12.3,2.36,18.39,2.36,26.09,0,42.29-15.55,42.29-40.58,0-16.26-6.55-26.88-17.03-38.64"/>
-        </svg>
-      </a>
-      <span class="nav-tagline">Graphic Design<br>Studio</span>
-    </div>
-    <div class="nav-links">
-      <a href="about.html" class="nav-link">About</a>
-      <a href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener" class="nav-link">Instagram</a>
-      <a href="mailto:info@puchworks.com" class="nav-link">Contacto</a>
-    </div>
-  </nav>
-
-  <!-- ── HERO ─────────────────────────────────────────── -->
-  <section class="hero">
-    <p class="hero-text">PUCHWORKS® Graphic Design Studio es una oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.</p>
-  </section>
-
-  <!-- ── CAROUSEL ─────────────────────────────────────────── -->
-  <div class="carousel-track">
-    <div class="carousel-inner">
-      <a class="carousel-card" href="relvo.html"><div class="carousel-card-inner"><img src="img/c1.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c2.jpg" alt=""></div></a>
-      <div class="carousel-card coming-soon"><div class="carousel-card-inner"><img src="img/c3.jpg" alt=""></div></div>
-      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c4.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DPAHn9mjN2O/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c5.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c6.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c7.jpg" alt=""></div></a>
-      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c8.jpg" alt=""></div></a>
-      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c9.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DUJI1YlFHKB/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c10.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/C3Yl0S1OnjX/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c11.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c12.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c13.jpg" alt=""></div></a>
-      <a class="carousel-card" href="prodemu.html"><div class="carousel-card-inner"><img src="img/c14.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DQsJH1jCevq/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c15.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c16.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c17.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DYDdNOAmZSS/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c18.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DYDdNOAmZSS/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c19.jpg" alt=""></div></a>
-      <!-- duplicado para loop infinito -->
-      <a class="carousel-card" href="relvo.html"><div class="carousel-card-inner"><img src="img/c1.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c2.jpg" alt=""></div></a>
-      <div class="carousel-card coming-soon"><div class="carousel-card-inner"><img src="img/c3.jpg" alt=""></div></div>
-      <a class="carousel-card" href="https://www.instagram.com/p/DXutqt-FA24/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c4.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DPAHn9mjN2O/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c5.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c6.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DN39_IxCQtP/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c7.jpg" alt=""></div></a>
-      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c8.jpg" alt=""></div></a>
-      <a class="carousel-card" href="f360.html"><div class="carousel-card-inner"><img src="img/c9.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DUJI1YlFHKB/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c10.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/C3Yl0S1OnjX/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c11.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c12.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DRVgPzziXWx/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c13.jpg" alt=""></div></a>
-      <a class="carousel-card" href="prodemu.html"><div class="carousel-card-inner"><img src="img/c14.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DQsJH1jCevq/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c15.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c16.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DSakvhblFfb/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c17.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DYDdNOAmZSS/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c18.jpg" alt=""></div></a>
-      <a class="carousel-card" href="https://www.instagram.com/p/DYDdNOAmZSS/?img_index=1" target="_blank" rel="noopener"><div class="carousel-card-inner"><img src="img/c19.jpg" alt=""></div></a>
-    </div>
-  </div>
-
-  <!-- ── PROYECTOS DESTACADOS ──────────────────────────── -->
-  <p class="section-label" style="margin-top:48px;">Proyectos Destacados</p>
-  <div class="projects-grid">
-
-    <a class="project-card" href="purafruit.html">
-      <div class="project-card-inner">
-        <img src="img/p11.jpg" alt="PuraFruit Company">
-        <span class="project-label">Sistema Visual PuraFruit Company</span>
-      </div>
+  <header class="header">
+    <a class="logo" href="/" aria-label="PUCHWORKS® — inicio">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="nonzero" d="M6.87 11.78L6.40 11.78L6.40 7.48L6.80 7.48C8.11 7.48 9.17 8.07 9.17 9.54C9.17 10.81 8.48 11.78 6.87 11.78M32.68 10.23L32.68 1.80L26.38 1.80L26.38 15.55C26.38 17.05 25.54 18.11 24.01 18.11C22.49 18.11 21.62 17.05 21.62 15.37L21.62 1.80L15.22 1.80L15.22 7.21C14.40 3.67 11.47 1.80 6.43 1.80L0.00 1.80L0.00 23.63L6.40 23.63L6.40 16.83L6.68 16.83C11.84 16.83 14.45 14.38 15.22 11.44L15.22 16.17C15.22 21.26 18.73 23.97 24.01 23.97C29.30 23.97 32.68 21.16 32.68 15.96L32.68 15.38C33.71 20.38 37.90 24.00 43.49 24.00C44.95 24.00 46.75 23.72 48.09 23.19L48.09 16.02C47.31 16.92 45.79 17.76 43.77 17.76C40.73 17.76 38.83 15.52 38.83 12.71C38.83 9.91 40.64 7.66 43.77 7.66C45.82 7.66 47.31 8.60 48.09 9.57L48.09 2.15C46.79 1.68 45.05 1.43 43.52 1.43C38.61 1.43 33.81 4.34 32.68 10.23"/><path fill="currentColor" fill-rule="nonzero" d="M127.13 20.87L124.33 14.18C125.55 13.48 126.76 12.03 127.13 10.16L127.13 20.87L127.13 20.87M118.65 11.31L118.18 11.31L118.18 7.23L118.58 7.23C119.89 7.23 120.94 7.82 120.94 9.29C120.94 10.35 120.26 11.31 118.65 11.31M100.80 17.77C97.76 17.77 95.87 15.52 95.87 12.72C95.87 9.91 97.67 7.67 100.80 7.67C103.94 7.67 105.74 9.94 105.74 12.72C105.74 15.49 103.79 17.77 100.80 17.77M152.60 11.43L150.31 8.61C149.76 8.00 149.69 7.61 149.69 7.33C149.69 6.71 150.18 6.58 150.59 6.58C151.23 6.58 152.13 6.88 153.26 7.48L154.01 7.88L154.01 2.07L153.64 1.96C152.42 1.61 151.27 1.43 150.20 1.43C146.30 1.43 143.87 3.73 143.87 7.42C143.87 9.42 144.56 11.14 145.97 12.68L148.40 15.60C148.99 16.32 149.24 16.84 149.24 17.38C149.24 17.62 149.24 18.37 148.16 18.37C147.30 18.37 146.19 17.88 144.77 16.87L143.96 16.30L143.96 21.47L143.53 20.66L138.90 12.00L144.77 1.81L138.12 1.81L133.53 10.29L133.53 1.80L127.13 1.80L127.13 7.49C126.51 3.83 123.54 1.80 118.21 1.80L111.78 1.80L111.78 9.66C110.54 4.42 106.17 1.43 100.90 1.43C96.79 1.43 92.59 3.47 90.62 7.58L91.80 1.80L85.34 1.80L84.22 12.31L81.73 1.80L76.73 1.80L74.49 12.31L73.28 1.80L61.14 1.80L61.14 9.47L55.79 9.47L55.79 1.80L49.39 1.80L49.39 23.62L55.79 23.62L55.79 15.71L61.14 15.71L61.14 23.62L67.54 23.62L67.54 6.36L71.08 23.66L76.85 23.66L79.25 12.15L81.73 23.66L87.36 23.66L89.48 13.21C89.61 19.30 94.49 24.00 100.87 24.00C105.76 24.00 110.48 20.97 111.78 15.72L111.78 23.63L118.18 23.63L118.18 14.99L118.46 14.99L121.10 23.63L133.53 23.63L133.53 15.49L133.74 15.02L138.09 23.63L145.70 23.63C146.64 23.86 147.65 24.00 148.61 24.00C152.74 24.00 155.30 21.53 155.30 17.56C155.30 14.98 154.26 13.30 152.60 11.43"/><path fill="currentColor" fill-rule="nonzero" d="M160.66 0.00C162.51 0.00 164.00 1.38 164.00 3.38C164.00 5.38 162.51 6.74 160.66 6.74C158.80 6.74 157.30 5.37 157.30 3.38C157.30 1.39 158.80 0.00 160.66 0.00M160.66 6.09C162.16 6.09 163.29 4.99 163.29 3.38C163.29 1.78 162.16 0.65 160.66 0.65C159.15 0.65 158.02 1.76 158.02 3.38C158.02 5.01 159.17 6.09 160.66 6.09M160.66 3.73L160.08 3.73L160.08 5.05L159.22 5.05L159.22 1.46L160.51 1.46C161.49 1.46 162.17 1.69 162.17 2.61C162.17 3.11 161.93 3.41 161.52 3.58L162.38 5.05L161.41 5.05L160.66 3.73L160.66 3.73M160.71 2.15L160.08 2.15L160.08 3.06L160.72 3.06C161.14 3.06 161.30 2.90 161.30 2.62C161.30 2.34 161.09 2.15 160.71 2.15L160.71 2.15"/></svg>
     </a>
+    <nav class="nav" aria-label="Principal">
+      <span class="nav__item" aria-disabled="true" title="Próximamente">Proyectos</span>
+      <span class="nav__item" aria-disabled="true" title="Próximamente">Studio</span>
+    </nav>
+  </header>
 
-    <a class="project-card" href="relvo.html">
-      <div class="project-card-inner">
-        <img src="img/p1.jpg" alt="Relvo">
-        <span class="project-label">Relvo</span>
+  <main class="main">
+    <section class="intro">
+      <h1 class="intro__title">PUCHWORKS<sup>®</sup> Studio es una oficina de diseño con enfoque en branding, identidades visuales, packaging, formatos digitales y otros proyectos creativos.</h1>
+      <p class="intro__note">Sitio en construcción. Pronto podrás conocer todos nuestros casos de estudio.</p>
+      <div class="intro__actions">
+        <a class="btn" href="mailto:info@puchworks.com">Contacto</a>
+        <a class="btn" href="https://www.instagram.com/puchworks.studio" target="_blank" rel="noopener">Ver portafolio</a>
       </div>
-    </a>
+    </section>
 
-    <a class="project-card" href="f360.html">
-      <div class="project-card-inner">
-        <img src="img/p2.jpg" alt="F360">
-        <span class="project-label">F360 by Flipeame!</span>
+    <section class="reel" aria-label="Proyectos seleccionados">
+      <div class="reel__track">
+        <ul class="reel__group">
+          <li><picture><source srcset="assets/img/wtf-type.webp" type="image/webp"><img src="assets/img/wtf-type.jpg" alt="WTF — especímenes tipográficos" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/nalca.webp" type="image/webp"><img src="assets/img/nalca.jpg" alt="Nalca — campaña Cyber Sale Days" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/puente-os.webp" type="image/webp"><img src="assets/img/puente-os.jpg" alt="Puente OS — logotipo" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/puente-os-campana.webp" type="image/webp"><img src="assets/img/puente-os-campana.jpg" alt="Puente OS — campaña" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/apk-protocol.webp" type="image/webp"><img src="assets/img/apk-protocol.jpg" alt="APK Protocol — brand assets" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/vincula360.webp" type="image/webp"><img src="assets/img/vincula360.jpg" alt="Vincula360 — identidad visual" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/f360-papeleria.webp" type="image/webp"><img src="assets/img/f360-papeleria.jpg" alt="F360 — papelería" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/f360-grilla.webp" type="image/webp"><img src="assets/img/f360-grilla.jpg" alt="F360 — construcción del logotipo" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/platanus-hack.webp" type="image/webp"><img loading="lazy" src="assets/img/platanus-hack.jpg" alt="Platanus Hack 26 — afiches en metro" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-redes.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-redes.jpg" alt="Purafruit — piezas para redes sociales" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-uva.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-uva.jpg" alt="Purafruit — Uva Blanca" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-berries.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-berries.jpg" alt="Purafruit — giant & juicy" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-packaging.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-packaging.jpg" alt="Purafruit — packaging de arándanos" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/taiming-etiqueta.webp" type="image/webp"><img loading="lazy" src="assets/img/taiming-etiqueta.jpg" alt="Taiming — etiqueta de polerón" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/taiming-poster.webp" type="image/webp"><img loading="lazy" src="assets/img/taiming-poster.jpg" alt="Taiming — afiche" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/relvo-pantalla.webp" type="image/webp"><img loading="lazy" src="assets/img/relvo-pantalla.jpg" alt="Relvo — pantalla de campaña" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/relvo-retrato.webp" type="image/webp"><img loading="lazy" src="assets/img/relvo-retrato.jpg" alt="Relvo — Factura lo que negocias" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/feite-ui.webp" type="image/webp"><img loading="lazy" src="assets/img/feite-ui.jpg" alt="Feite — interfaz de usuario" width="640" height="800" draggable="false"></picture></li>
+        </ul>
+        <ul class="reel__group" aria-hidden="true">
+          <li><picture><source srcset="assets/img/wtf-type.webp" type="image/webp"><img loading="lazy" src="assets/img/wtf-type.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/nalca.webp" type="image/webp"><img loading="lazy" src="assets/img/nalca.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/puente-os.webp" type="image/webp"><img loading="lazy" src="assets/img/puente-os.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/puente-os-campana.webp" type="image/webp"><img loading="lazy" src="assets/img/puente-os-campana.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/apk-protocol.webp" type="image/webp"><img loading="lazy" src="assets/img/apk-protocol.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/vincula360.webp" type="image/webp"><img loading="lazy" src="assets/img/vincula360.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/f360-papeleria.webp" type="image/webp"><img loading="lazy" src="assets/img/f360-papeleria.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/f360-grilla.webp" type="image/webp"><img loading="lazy" src="assets/img/f360-grilla.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/platanus-hack.webp" type="image/webp"><img loading="lazy" src="assets/img/platanus-hack.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-redes.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-redes.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-uva.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-uva.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-berries.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-berries.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/purafruit-packaging.webp" type="image/webp"><img loading="lazy" src="assets/img/purafruit-packaging.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/taiming-etiqueta.webp" type="image/webp"><img loading="lazy" src="assets/img/taiming-etiqueta.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/taiming-poster.webp" type="image/webp"><img loading="lazy" src="assets/img/taiming-poster.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/relvo-pantalla.webp" type="image/webp"><img loading="lazy" src="assets/img/relvo-pantalla.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/relvo-retrato.webp" type="image/webp"><img loading="lazy" src="assets/img/relvo-retrato.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+          <li><picture><source srcset="assets/img/feite-ui.webp" type="image/webp"><img loading="lazy" src="assets/img/feite-ui.jpg" alt="" width="640" height="800" draggable="false"></picture></li>
+        </ul>
       </div>
-    </a>
+    </section>
+  </main>
 
-    <a class="project-card" href="puente.html">
-      <div class="project-card-inner">
-        <img src="img/p3.jpg" alt="Puente OS">
-        <span class="project-label">Identidad Puente OS</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="ongo.html">
-      <div class="project-card-inner">
-        <img src="img/p7.jpg" alt="Ongo">
-        <span class="project-label">Identidad y Packaging Ongo</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="costaverde.html">
-      <div class="project-card-inner">
-        <img src="img/p5.png" alt="Costa Verde">
-        <span class="project-label">Identidad Inversiones Costa Verde</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="citybloom.html">
-      <div class="project-card-inner">
-        <img src="img/p6.png" alt="CityBloom">
-        <span class="project-label">CityBloom</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="tribux.html">
-      <div class="project-card-inner">
-        <img src="img/p10.jpg" alt="TribUX">
-        <span class="project-label">Escuela TribUX</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="prodemu.html">
-      <div class="project-card-inner">
-        <img src="img/p8.jpg" alt="PRODEMU">
-        <span class="project-label">PRODEMU</span>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- ── CLIENTS ─────────────────────────────────────────── -->
-  <div class="clients-section">
-    <p class="clients-label">Han confiado en nuestro trabajo</p>
-    <hr class="clients-divider">
-    <div class="clients-grid">
-      <span class="client-item">Sticta Biologicals</span>
-      <span class="client-item">Summit Produce</span>
-      <span class="client-item">iConstruye</span>
-      <span class="client-item">Diseño UC</span>
-      <span class="client-item">Fundación Prodemu</span>
-      <span class="client-item">Platanus Ventures</span>
-      <span class="client-item">PuraFruit Company</span>
-      <span class="client-item">Cámara de Comercio de Santiago</span>
-      <span class="client-item">Inversiones Costa Verde</span>
-      <span class="client-item">Flipeame!</span>
-    </div>
-  </div>
-
-  <!-- ── ROTATING AREAS ─────────────────────────────────── -->
-  <div class="areas-section">
-    <p class="areas-text">Hemos trabajado en las áreas<br>de <span id="rotating-area">Ciencia</span>.</p>
-  </div>
-
-  <!-- ── FOOTER ────────────────────────────────────────── -->
-  <footer>
-    <div class="footer-grid">
-
-      <div class="footer-logo-wrap">
-        <div class="footer-logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 982 142.23" aria-hidden="true">
-          <path d="M43.41,65.22h-2.94v-27.11h2.55c8.25,0,14.93,3.73,14.93,12.97,0,8.05-4.32,14.14-14.54,14.14M206.65,55.47V2.36h-39.88v86.63c0,9.43-5.3,16.11-14.93,16.11s-15.12-6.68-15.12-17.29V2.36h-40.47v34.06C91.04,14.08,72.55,2.36,40.67,2.36H0v137.51h40.47v-42.83h1.77c32.63,0,49.16-15.41,54.01-33.99v29.86c0,32.02,22.2,49.11,55.6,49.11s54.81-17.68,54.81-50.49v-3.61c6.51,31.47,33,54.29,68.35,54.29,9.24,0,20.63-1.77,29.08-5.11v-45.18c-4.91,5.7-14.53,11-27.3,11-19.25,0-31.24-14.14-31.24-31.82s11.4-31.82,31.24-31.82c12.96,0,22.39,5.89,27.3,11.98V4.52c-8.25-2.95-19.25-4.52-28.87-4.52-31.08,0-61.41,18.32-68.55,55.47"/>
-          <path d="M803.86,122.5l-17.67-42.16c7.7-4.43,15.33-13.54,17.67-25.33v67.49ZM750.24,62.27h-2.94v-25.73h2.55c8.25,0,14.93,3.73,14.93,12.96,0,6.68-4.32,12.77-14.53,12.77M637.42,102.94c-19.26,0-31.23-14.14-31.23-31.82s11.39-31.82,31.23-31.82,31.23,14.34,31.23,31.82-12.37,31.82-31.23,31.82M964.96,63l-14.51-17.75c-3.47-3.85-3.91-6.34-3.91-8.08,0-3.91,3.09-4.73,5.68-4.73,4.04,0,9.72,1.92,16.88,5.7l4.74,2.5V4.02l-2.34-.68C963.83,1.13,956.51,0,949.76,0c-24.68,0-40.02,14.46-40.02,37.74,0,12.59,4.37,23.47,13.26,33.17l15.36,18.39c3.78,4.53,5.32,7.78,5.32,11.2,0,1.54,0,6.25-6.82,6.25-5.42,0-12.44-3.09-21.46-9.46l-5.1-3.6v32.57l-2.73-5.09-29.26-54.58L915.44,2.36h-42.04l-29.07,53.43V2.36h-40.47v35.81c-3.9-23.05-22.68-35.81-56.37-35.81h-40.67v49.47C698.99,18.81,671.34,0,638.01,0,612.03,0,585.49,12.86,573.04,38.75l7.42-36.4h-40.86l-7.07,66.2-15.72-66.2h-31.63l-14.14,66.2-7.66-66.2h-76.8v48.33h-33.79V2.36h-40.47v137.51h40.47v-49.9h33.79v49.9h40.47V31.09l22.39,108.97h36.54l15.13-72.49,15.71,72.49h35.56l13.43-65.81c.83,38.33,31.71,67.97,72.02,67.97,30.93,0,60.78-19.12,69.01-52.17v49.81h40.47v-54.41h1.77l16.7,54.41h78.57v-51.27l1.37-2.95,27.5,54.22h48.11c5.96,1.48,12.3,2.36,18.39,2.36,26.09,0,42.29-15.55,42.29-40.58,0-16.26-6.55-26.88-17.03-38.64"/>
-        </svg>
-        </div>
-        <span class="footer-tagline">Graphic Design<br>Studio</span>
-      </div>
-
-      <div class="footer-cols">
-        <div class="footer-col">
-          <p class="footer-col-title">Síguenos</p>
-          <a class="footer-col-item" href="https://instagram.com/puchworks.studio" target="_blank" rel="noopener">Instagram</a>
-          <a class="footer-col-item" href="https://linkedin.com/company/puchworks" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-col-title">Contacto</p>
-          <a class="footer-col-item" href="mailto:info@puchworks.com">info@puchworks.com</a>
-        </div>
-      </div>
-
-
-    </div>
+  <footer class="footer">
+    <a href="mailto:info@puchworks.com">info@puchworks.com</a>
+    <a href="https://www.linkedin.com/company/98616827/" target="_blank" rel="noopener">LinkedIn</a>
+    <p class="footer__credit">PUCHWORKS® Studio 2026</p>
   </footer>
-
-  <!-- ── BOUNCING STICKER 2 ───────────────────────────── -->
-  <div id="sticker2" style="position:fixed;z-index:999;width:240px;pointer-events:auto;cursor:grab;">
-    <img src="img/sticker2.svg" style="width:100%;height:auto;display:block;">
-  </div>
-
-  <!-- ── BOUNCING STICKER ──────────────────────────────── -->
-  <div id="sticker" style="position:fixed;z-index:999;width:120px;cursor:grab;pointer-events:auto;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84.17 56.24" style="width:100%;height:auto;">
-      <defs><style>.cls-1{fill:#26c640}.cls-2{fill:#282828}</style></defs>
-      <g>
-        <path class="cls-1" d="M75.45,0H8.73C8.73,14.06,0,14.06,0,28.12s8.73,14.06,8.73,28.12h66.72c0-14.06,8.73-14.06,8.73-28.12s-8.73-14.06-8.73-28.12Z"/>
-        <path class="cls-2" d="M16.53,6.59c1.3,0,2.79.18,2.79,2.1,0,1.62-1.29,2.01-2.76,2.01h-.95v2.23h-1.25v-6.35h2.17ZM15.61,7.57v2.16h1.03c.77,0,1.39-.19,1.39-1.03,0-1.04-.81-1.13-1.48-1.13h-.95Z"/><path class="cls-2" d="M21.11,6.59v3.67c0,1.12.23,1.79,1.38,1.79s1.37-.67,1.37-1.79v-3.67h1.25v3.66c0,2.09-.76,2.8-2.62,2.8s-2.64-.71-2.64-2.8v-3.66h1.25Z"/><path class="cls-2" d="M31.65,10.86c-.17,1.29-1.23,2.2-2.75,2.2-1.89,0-2.97-1.29-2.97-3.32s1.16-3.26,3-3.26c1.49,0,2.5.85,2.71,2.17h-1.19c-.24-.88-.83-1.17-1.53-1.17-.96,0-1.7.79-1.7,2.26s.74,2.32,1.66,2.32c.75,0,1.37-.33,1.58-1.2h1.19Z"/><path class="cls-2" d="M37.8,6.59v6.35h-1.25v-2.74h-2.85v2.74h-1.25v-6.35h1.25v2.59h2.85v-2.59h1.25Z"/><path class="cls-2" d="M43.97,11.24l.87-4.65h1.28l-1.41,6.35h-1.48l-.96-4.73-.96,4.73h-1.48l-1.41-6.35h1.3l.95,4.62.88-4.62h1.46l.97,4.65Z"/><path class="cls-2" d="M49.53,13.06c-1.89,0-3.11-1.32-3.11-3.29s1.22-3.28,3.11-3.28,3.11,1.31,3.11,3.28-1.22,3.29-3.11,3.29ZM49.53,12.06c.99,0,1.81-.8,1.81-2.29s-.82-2.29-1.81-2.29-1.81.8-1.81,2.29.82,2.29,1.81,2.29Z"/><path class="cls-2" d="M56.1,10.46h-1.33v2.49h-1.25v-6.35h2.08c2.09,0,2.89.6,2.89,1.93,0,.74-.35,1.33-1.15,1.67l1.41,2.75h-1.39l-1.26-2.49ZM54.77,7.57v1.91h1.03c.98,0,1.4-.32,1.4-.95,0-.74-.61-.96-1.46-.96h-.97Z"/><path class="cls-2" d="M60.7,9.5l2.59-2.91h1.46l-2.34,2.56,2.51,3.79h-1.48l-1.88-2.86-.88.96v1.91h-1.25v-6.35h1.25v2.91Z"/><path class="cls-2" d="M66.94,10.16c-1.02-.21-1.9-.74-1.9-1.84,0-1.28,1.37-1.84,2.53-1.84,1.31,0,2.43.77,2.5,1.99h-1.21c-.1-.74-.74-.99-1.34-.99s-1.23.22-1.23.79c0,.45.37.69.88.79l.83.15c1.03.19,2.17.59,2.17,1.91s-1.3,1.94-2.57,1.94c-1.56,0-2.59-.84-2.71-2.21h1.21c.14.94.79,1.21,1.54,1.21.56,0,1.27-.21,1.27-.88,0-.53-.5-.75-1.17-.87l-.81-.15Z"/><path class="cls-2" d="M16.29,17.05h-1.19c-.2-.7-.81-1.04-1.52-1.04-1.06,0-1.8.74-1.8,2.26s.71,2.32,1.8,2.32c.67,0,1.58-.34,1.58-1.36v-.11h-1.58v-1.02h2.74v3.37h-.99l-.03-.74c-.36.53-1.01.86-1.91.86-1.79,0-2.9-1.29-2.9-3.32s1.17-3.26,3.11-3.26c1.5,0,2.5.87,2.71,2.04Z"/><path class="cls-2" d="M20.07,17.93c-.17-.03-.32-.03-.5-.03-.6,0-.99.22-.99,1.1v2.47h-1.21v-4.71h1.19v.82c.27-.59.69-.81,1.24-.81.08,0,.18,0,.26.02v1.14Z"/><path class="cls-2" d="M22.03,21.59c-.9,0-1.7-.53-1.7-1.38,0-1.11,1.24-1.45,3.1-1.66v-.08c0-.73-.39-.98-.88-.98-.46,0-.85.24-.88.76h-1.13c.1-.93.85-1.61,2.07-1.61,1.11,0,2.03.49,2.03,2.08,0,.14-.02.78-.02,1.2,0,.74.04,1.16.14,1.56h-1.11c-.04-.15-.05-.35-.08-.59-.34.49-.83.7-1.54.7ZM23.46,19.32c-1.36.14-1.89.3-1.89.82,0,.34.26.62.81.62.76,0,1.08-.4,1.08-1.1v-.35Z"/><path class="cls-2" d="M25.64,23.01v-6.25h1.21v.6c.25-.45.76-.71,1.36-.71,1.14,0,2.05.98,2.05,2.46s-.94,2.47-2.06,2.47c-.49,0-1.04-.18-1.35-.71v2.13h-1.21ZM28.99,19.13c0-.92-.45-1.54-1.08-1.54-.67,0-1.1.59-1.1,1.53s.44,1.54,1.1,1.54c.63,0,1.08-.61,1.08-1.53Z"/><path class="cls-2" d="M32.25,17.39c.27-.48.78-.73,1.37-.73,1.13,0,1.63.68,1.63,1.85v2.97h-1.21v-2.71c0-.6-.13-1.14-.81-1.14-.8,0-.97.65-.97,1.39v2.45h-1.21v-6.35h1.21v2.26Z"/><path class="cls-2" d="M37.46,15.13v1.12h-1.21v-1.12h1.21ZM37.46,16.76v4.71h-1.21v-4.71h1.21Z"/><path class="cls-2" d="M42.75,18.37h-1.16c-.1-.46-.52-.78-.98-.78-.63,0-1.13.53-1.13,1.51s.47,1.54,1.14,1.54c.42,0,.85-.22,1.02-.78h1.16c-.28,1.29-1.25,1.72-2.23,1.72-1.41,0-2.31-1.03-2.31-2.46s.96-2.47,2.37-2.47c.99,0,1.97.55,2.14,1.72Z"/><path class="cls-2" d="M47.39,15.13c2.01,0,3.53.65,3.53,3.17s-1.52,3.18-3.53,3.18h-1.88v-6.35h1.88ZM47.34,16.11h-.58v4.39h.58c1.16,0,2.29-.28,2.29-2.2s-1.13-2.19-2.29-2.19Z"/><path class="cls-2" d="M52.76,19.45c.07.81.61,1.2,1.19,1.2.38,0,.74-.13.99-.54h1.24c-.25.7-.94,1.48-2.22,1.48-1.52,0-2.4-1.13-2.4-2.49s.97-2.44,2.37-2.44,2.36,1.13,2.31,2.79h-3.48ZM52.78,18.62h2.23c-.03-.8-.59-1.08-1.09-1.08-.46,0-1.04.28-1.14,1.08Z"/><path class="cls-2" d="M59.71,18.18c-.1-.39-.45-.67-1.01-.67-.45,0-.76.17-.76.46,0,.25.18.45.63.54l.63.14c.94.21,1.73.45,1.73,1.42s-.97,1.52-2.04,1.52c-1.16,0-2.03-.6-2.15-1.67h1.17c.07.46.39.8,1.02.8.53,0,.85-.19.85-.53s-.36-.48-.77-.58l-.7-.15c-.88-.18-1.47-.55-1.47-1.41s.91-1.4,1.93-1.4,1.91.46,2.08,1.54h-1.13Z"/><path class="cls-2" d="M62.9,15.13v1.12h-1.21v-1.12h1.21ZM62.9,16.76v4.71h-1.21v-4.71h1.21Z"/><path class="cls-2" d="M68.28,16.76v4.24c0,1.54-.87,2.12-2.31,2.12-1.01,0-1.89-.37-2.06-1.46h1.15c.11.39.43.58.97.58.63,0,1.05-.3,1.05-1.01v-.63c-.31.52-.86.71-1.35.71-1.16,0-2.05-.96-2.05-2.33s.87-2.32,2.05-2.32c.6,0,1.14.31,1.35.72v-.61h1.2ZM67.12,18.98c0-.83-.41-1.4-1.09-1.4-.62,0-1.09.62-1.09,1.41s.46,1.4,1.09,1.4c.67,0,1.09-.57,1.09-1.41Z"/><path class="cls-2" d="M70.58,17.39c.27-.48.78-.73,1.37-.73,1.13,0,1.63.68,1.63,1.85v2.97h-1.21v-2.71c0-.6-.13-1.14-.81-1.14-.8,0-.97.65-.97,1.39v2.45h-1.21v-4.71h1.21v.62Z"/><path class="cls-2" d="M30.86,27.22c-1.02-.21-1.9-.74-1.9-1.84,0-1.28,1.37-1.84,2.53-1.84,1.31,0,2.43.77,2.5,1.99h-1.21c-.1-.74-.74-.99-1.34-.99s-1.23.22-1.23.79c0,.45.37.69.88.79l.83.15c1.03.19,2.17.59,2.17,1.91s-1.3,1.94-2.57,1.94c-1.56,0-2.59-.84-2.71-2.21h1.21c.14.94.79,1.21,1.54,1.21.56,0,1.27-.21,1.27-.88,0-.53-.5-.75-1.17-.87l-.81-.15Z"/><path class="cls-2" d="M35.09,24.01h1.21v1.28h.98v.83h-.98v2.43c0,.48.17.58.6.58h.37v.87h-.88c-1.09,0-1.29-.33-1.29-1.27v-2.61h-.67v-.83h.67v-1.28Z"/><path class="cls-2" d="M40.95,29.38c-.27.48-.79.74-1.38.74-1.13,0-1.59-.69-1.59-1.85v-2.98h1.21v2.71c0,.63.1,1.14.77,1.14.81,0,.98-.66.98-1.4v-2.45h1.21v4.71h-1.21v-.62Z"/><path class="cls-2" d="M46.35,30.01v-.6c-.31.53-.87.71-1.36.71-1.12,0-2.05-.96-2.05-2.47s.91-2.46,2.05-2.46c.6,0,1.1.26,1.36.71v-2.24h1.21v6.35h-1.21ZM46.39,27.65c0-.95-.44-1.53-1.1-1.53-.63,0-1.08.62-1.08,1.54s.45,1.53,1.08,1.53c.67,0,1.1-.57,1.1-1.54Z"/><path class="cls-2" d="M49.85,23.66v1.12h-1.21v-1.12h1.21ZM49.85,25.29v4.71h-1.21v-4.71h1.21Z"/><path class="cls-2" d="M50.62,27.66c0-1.66,1.17-2.47,2.37-2.47s2.36.81,2.36,2.47-1.17,2.46-2.36,2.46-2.37-.81-2.37-2.46ZM51.85,27.66c0,.99.47,1.52,1.14,1.52s1.14-.53,1.14-1.52-.47-1.52-1.14-1.52-1.14.53-1.14,1.52Z"/><path class="cls-2" d="M22.3,43.53c1.07,0,2.06.6,2.2,2.01h-1.26c-.08-.63-.44-1-1.01-1-.49,0-.82.28-.82.71s.23.7.8.84l.55.14c.84.21,1.88.62,1.88,1.91,0,1.38-1.1,1.97-2.16,1.97-1.43,0-2.34-.85-2.48-2.22h1.27c.1.73.48,1.21,1.17,1.21.5,0,.88-.27.88-.75s-.31-.78-.93-.94l-.65-.17c-.85-.21-1.64-.83-1.64-1.87,0-1.26,1.13-1.84,2.21-1.84Z"/><path class="cls-2" d="M30.31,47.79c-.17,1.51-.86,2.32-2.29,2.32-1.66,0-2.45-1.23-2.45-3.29s.84-3.28,2.5-3.28c1.39,0,2.08.92,2.2,2.31h-1.29c-.07-.88-.33-1.28-.96-1.28-.7,0-1.05.67-1.05,2.25s.32,2.26,1.05,2.26c.57,0,.94-.34,1-1.29h1.3Z"/><path class="cls-2" d="M33.01,48.87h2.96v1.13h-4.27v-6.35h1.31v5.22Z"/><path class="cls-2" d="M47.04,45.38c0,1.07-.78,1.97-1.97,2.98l-.69.6h2.63v1.03h-4.27v-1.02l1.32-1.16c1-.87,1.73-1.66,1.73-2.41,0-.63-.41-.88-.8-.88-.56,0-.98.46-.96,1.41h-1.23c-.04-1.57.93-2.38,2.2-2.38,1.16,0,2.04.67,2.04,1.82Z"/><path class="cls-2" d="M48.27,46.82c0-2.13.74-3.28,2.3-3.28s2.3,1.16,2.3,3.28-.74,3.29-2.3,3.29-2.3-1.16-2.3-3.29ZM49.56,46.87l1.98-.92c-.1-.99-.38-1.49-.96-1.49-.74,0-1.02.81-1.02,2.36v.05ZM51.58,46.82v-.05l-1.99.91c.1,1.01.39,1.5.98,1.5.74,0,1.01-.81,1.01-2.36Z"/><path class="cls-2" d="M58.35,45.38c0,1.07-.78,1.97-1.97,2.98l-.69.6h2.63v1.03h-4.27v-1.02l1.32-1.16c1-.87,1.73-1.66,1.73-2.41,0-.63-.41-.88-.8-.88-.56,0-.98.46-.96,1.41h-1.23c-.04-1.57.93-2.38,2.2-2.38,1.16,0,2.04.67,2.04,1.82Z"/><path class="cls-2" d="M60.9,46.12c.27-.28.7-.46,1.25-.46,1,0,1.95.85,1.95,2.22s-.96,2.22-2.22,2.22c-1.58,0-2.29-1.38-2.29-3.17s.74-3.41,2.43-3.41c1.31,0,1.95.82,2.02,1.84h-1.23c-.06-.63-.46-.92-.85-.92-.6,0-1.05.55-1.06,1.67ZM61.89,49.17c.53,0,.95-.51.95-1.29s-.41-1.24-.95-1.24-.96.44-.96,1.24.4,1.29.96,1.29Z"/>
-      </g>
-    </svg>
-  </div>
-
-  <script>
-    /* ── BOUNCING STICKERS ───────────────────────────────── */
-    function makeBouncingSticker(id, startX, startY, initVx, initVy) {
-      const el = document.getElementById(id);
-      const W = 120, H = 80;
-      let x = startX, y = startY;
-      let vx = initVx, vy = initVy;
-      const minSpeed = 0.8;
-      let dragging = false;
-      let mx = 0, my = 0, pmx = 0, pmy = 0;
-      let offsetX = 0, offsetY = 0;
-      let angle = 0;
-
-      el.addEventListener('mousedown', e => {
-        dragging = true;
-        offsetX = e.clientX - x;
-        offsetY = e.clientY - y;
-        pmx = e.clientX; pmy = e.clientY;
-        el.style.cursor = 'grabbing';
-        e.preventDefault();
-      });
-
-      document.addEventListener('mousemove', e => {
-        if (!dragging) return;
-        pmx = mx; pmy = my;
-        mx = e.clientX; my = e.clientY;
-        x = mx - offsetX;
-        y = my - offsetY;
-        el.style.left = x + 'px';
-        el.style.top = y + 'px';
-      });
-
-      document.addEventListener('mouseup', e => {
-        if (!dragging) return;
-        dragging = false;
-        vx = (mx - pmx) * 0.8;
-        vy = (my - pmy) * 0.8;
-        el.style.cursor = 'grab';
-      });
-
-      function animate() {
-        if (!dragging) {
-          x += vx; y += vy;
-          if (x + W >= window.innerWidth)  { x = window.innerWidth - W;  vx *= -1; }
-          if (x <= 0)                       { x = 0;                       vx *= -1; }
-          if (y + H >= window.innerHeight)  { y = window.innerHeight - H;  vy *= -1; }
-          if (y <= 0)                       { y = 0;                       vy *= -1; }
-          const speed = Math.sqrt(vx*vx + vy*vy);
-          if (speed < minSpeed) { const s = minSpeed / (speed || 0.01); vx *= s; vy *= s; }
-          angle += vx * 0.3;
-          el.style.left = x + 'px';
-          el.style.top  = y + 'px';
-          el.style.transform = `rotate(${angle}deg)`;
-        }
-        requestAnimationFrame(animate);
-      }
-      animate();
-    }
-
-    makeBouncingSticker('sticker',  window.innerWidth * 0.7,  window.innerHeight * 0.3,  1.2,  0.8);
-    makeBouncingSticker('sticker2', window.innerWidth * 0.2,  window.innerHeight * 0.6, -1.5,  1.0);
-
-    /* ── MARQUEE ─────────────────────────────────────────── */
-    (function() {
-      const inner = document.querySelector('.carousel-inner');
-      const track = document.querySelector('.carousel-track');
-      let pos = 0;
-      let currentSpeed = 1.2;
-      const baseSpeed = 1.2;
-      const fastSpeed = 3.5;
-
-      /* touch */
-      let touchStartX = 0, touchStartY = 0, isTouchH = false;
-      track.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        isTouchH = false;
-      }, { passive: true });
-      track.addEventListener('touchmove', (e) => {
-        const dx = e.touches[0].clientX - touchStartX;
-        const dy = e.touches[0].clientY - touchStartY;
-        if (!isTouchH && Math.abs(dx) < Math.abs(dy)) return;
-        isTouchH = true;
-        e.preventDefault();
-        pos += dx * 0.8;
-        touchStartX = e.touches[0].clientX;
-        const half = inner.scrollWidth / 2;
-        if (pos <= -half) pos = 0;
-        if (pos > 0) pos = -half;
-        inner.style.transform = `translateX(${pos}px)`;
-      }, { passive: false });
-
-      /* mouse */
-      track.addEventListener('mousemove', (e) => {
-        const rect = track.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const w = rect.width;
-        if (x < w * 0.25) {
-          currentSpeed = -fastSpeed;
-        } else if (x > w * 0.75) {
-          currentSpeed = fastSpeed;
-        } else {
-          currentSpeed = baseSpeed;
-        }
-      });
-
-      track.addEventListener('mouseleave', () => {
-        currentSpeed = baseSpeed;
-      });
-
-      function tick() {
-        pos += currentSpeed;
-        const half = inner.scrollWidth / 2;
-        if (pos <= -half) pos = 0;
-        if (pos > 0) pos = -half;
-        inner.style.transform = `translateX(${pos}px)`;
-        requestAnimationFrame(tick);
-      }
-      tick();
-    })();
-
-    /* ── ROTATING AREAS ──────────────────────────────────── */
-    const areas = [
-      'Ciencia','Tecnología','Moda','Alimentación','Agricultura',
-      'Bienestar','Arquitectura','Diseño','Educación','ONG',
-      'Startups','Sector Público','Industrias Creativas',
-      'Inversiones','Vivienda','Emprendimiento'
-    ];
-    let areaIndex = 0;
-    const rotEl = document.getElementById('rotating-area');
-    setInterval(() => {
-      rotEl.style.opacity = '0';
-      setTimeout(() => {
-        areaIndex = (areaIndex + 1) % areas.length;
-        rotEl.textContent = areas[areaIndex];
-        rotEl.style.opacity = '1';
-      }, 150);
-    }, 500);
-  </script>
-
+  <script src="reel.js" defer></script>
 </body>
 </html>
